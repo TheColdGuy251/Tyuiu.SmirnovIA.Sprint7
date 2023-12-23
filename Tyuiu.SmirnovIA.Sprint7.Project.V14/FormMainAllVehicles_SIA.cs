@@ -24,12 +24,13 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14
         }
 
         static int rows = 0;
-        static int columns = 4;
+        static int columns = 8;
         static string openFilePath = "";
         static string[,] arrayValues = new string[rows, columns];
         static int newID = 0;
         static bool wasTrue = false;
         static bool isSaved = true;
+        static string[] filters = new string[7];
         DataService ds = new DataService();
         public static string[,] LoadFromFileData(string filePath)
         {
@@ -55,7 +56,7 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14
             catch 
             {
                 rows = 0;
-                columns = 4;
+                columns = 8;
                 arrayValues = new string[rows, columns];
             }
             
@@ -92,6 +93,7 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14
                 str = "";
             }
             isSaved = true;
+            Filter();
         }
 
         private void UpdateTable()
@@ -107,6 +109,36 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14
             }
         }
 
+        private void Filter()
+        {
+            dataGridViewVehicles_SIA.Rows.Clear();
+            for (int i = 0; i < rows; i++)
+            {
+                if ((arrayValues[i, 0] == filters[0] || string.IsNullOrWhiteSpace(filters[0])) && (arrayValues[i, 1] == filters[1] || string.IsNullOrWhiteSpace(filters[1])) && (arrayValues[i, 2] == filters[2] || string.IsNullOrWhiteSpace(filters[2])) && (arrayValues[i, 3] == filters[3] || string.IsNullOrWhiteSpace(filters[3])) && (arrayValues[i, 6] == filters[6] || string.IsNullOrWhiteSpace(filters[6])))
+                {
+                    try
+                    {
+                        if ((arrayValues[i, 4].Contains(filters[4]) || string.IsNullOrWhiteSpace(filters[4])) && (arrayValues[i, 5].Contains(filters[5]) || string.IsNullOrWhiteSpace(filters[5])))
+                        {
+                            dataGridViewVehicles_SIA.Rows.Add(arrayValues[i, 0]);
+                            for (int k = 1; k < columns; k++)
+                            {
+                                dataGridViewVehicles_SIA.Rows[dataGridViewVehicles_SIA.RowCount - 1].Cells[k].Value = arrayValues[i, k];
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        dataGridViewVehicles_SIA.Rows.Add(arrayValues[i, 0]);
+                        for (int k = 1; k < columns; k++)
+                        {
+                            dataGridViewVehicles_SIA.Rows[dataGridViewVehicles_SIA.RowCount - 1].Cells[k].Value = arrayValues[i, k];
+                        }
+                    }
+                    
+                }
+            }
+        }
         private void buttonGoToVehicle_SIA_Click(object sender, EventArgs e)
         {
 
@@ -123,24 +155,26 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14
 
             for  (int i = 1; i < columns; i++)
             {
-                dataGridViewVehicles_SIA.Rows[rows - 1].Cells[i].Value = "";
+                dataGridViewVehicles_SIA.Rows[dataGridViewVehicles_SIA.Rows.Count - 1].Cells[i].Value = "";
             }
             
-            for (int i = 0;i < rows-1; i++)
+            for (int i = 0; i < rows-1; i++)
             {
-                newID = Math.Max(Convert.ToInt32(dataGridViewVehicles_SIA.Rows[i].Cells[0].Value), newID);
+                newID = Math.Max(Convert.ToInt32(arrayValues[i, 0]), newID);
             }
             newID++;
-            dataGridViewVehicles_SIA.Rows[rows-1].Cells[0].Value = Convert.ToString(newID);
+            dataGridViewVehicles_SIA.Rows[dataGridViewVehicles_SIA.Rows.Count - 1].Cells[0].Value = Convert.ToString(newID);
+            string[,] tempValues = arrayValues;
             arrayValues = new string[rows, columns];
-            for (int r = 0; r < rows; r++)
+            for (int r = 0; r < rows - 1; r++)
             {
                 for (int c = 0; c < columns; c++)
                 {
-                    arrayValues[r, c] = Convert.ToString(dataGridViewVehicles_SIA.Rows[r].Cells[c].Value);
-
+                    arrayValues[r, c] = tempValues[r, c];
                 }
             }
+            for (int с = 0; с < columns; с++)
+                arrayValues[rows - 1, с] = Convert.ToString(dataGridViewVehicles_SIA.Rows[dataGridViewVehicles_SIA.Rows.Count - 1].Cells[с].Value);
         }
 
         private void buttonDeleteVehicle_SIA_Click(object sender, EventArgs e)
@@ -149,10 +183,38 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14
             isSaved = false;
             if (dialogResult == DialogResult.Yes)
             {
+                string[] tempArray = new string[dataGridViewVehicles_SIA.SelectedRows.Count];
+                int cnt = 0;
                 foreach (DataGridViewRow item in this.dataGridViewVehicles_SIA.SelectedRows)
                 {
+                    tempArray[cnt] = Convert.ToString(dataGridViewVehicles_SIA.Rows[item.Index].Cells[0].Value);
                     dataGridViewVehicles_SIA.Rows.RemoveAt(item.Index);
-                    rows--;
+                    cnt++;
+                }
+
+                UpdateTable();
+
+                for (int i = rows-1; i >= 0; i--)
+                {
+                    for (int j = 0; j < tempArray.GetLength(0); j++)
+                    {
+                        try
+                        {
+                            if (Convert.ToString(dataGridViewVehicles_SIA.Rows[i].Cells[0].Value) == tempArray[j])
+                            {
+                                dataGridViewVehicles_SIA.Rows.RemoveAt(i);
+                                rows--;
+                            }
+                        }
+                        catch {
+                            if (Convert.ToString(dataGridViewVehicles_SIA.Rows[dataGridViewVehicles_SIA.Rows.Count-1].Cells[0].Value) == tempArray[j])
+                            {
+                                dataGridViewVehicles_SIA.Rows.RemoveAt(dataGridViewVehicles_SIA.Rows.Count - 1);
+                                rows--;
+                            }
+                        }
+                    }
+                    
                 }
                 arrayValues = new string[rows, columns];
                 for (int r = 0; r < rows; r++)
@@ -164,6 +226,7 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14
                     }
                 }
                 newID = 0;
+                Filter();
             }
         }
             
@@ -210,6 +273,7 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14
 
         private void ToolStripMenuItemSave_SIA_Click(object sender, EventArgs e)
         {
+            UpdateTable();
             if (openFilePath != "")
             {
                 Save();
@@ -227,6 +291,7 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14
 
         private void ToolStripMenuItemSaveAs_SIA_Click(object sender, EventArgs e)
         {
+            UpdateTable();
             saveFileDialogSaveTo_SIA.FileName = "Транспорт.csv";
             saveFileDialogSaveTo_SIA.InitialDirectory = Directory.GetCurrentDirectory();
             saveFileDialogSaveTo_SIA.ShowDialog();
@@ -239,34 +304,50 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14
         {
             if (e.Column.Index == 0 || e.Column.Index == 2)
             {
-                e.SortResult = int.Parse(e.CellValue1.ToString()).CompareTo(int.Parse(e.CellValue2.ToString()));
-                e.Handled = true;
+                try 
+                {
+                    e.SortResult = int.Parse(e.CellValue1.ToString()).CompareTo(int.Parse(e.CellValue2.ToString()));
+                    e.Handled = true;
+                }
+                catch { }
             }
-
+            if (e.Column.Index == 3)
+            {
+                try
+                {
+                    e.SortResult = DateTime.Parse(e.CellValue1.ToString()).CompareTo(DateTime.Parse(e.CellValue2.ToString()));
+                    e.Handled = true;
+                }
+                catch { }
+            }
         }
-
         private void ToolStripMenuItemNewTable_SIA_Click(object sender, EventArgs e)
         {
-            if (!isSaved) { 
-            DialogResult dialogResult = MessageBox.Show("У вас есть несохранённые данные.\nСоздать новую таблицу? ", "Новая таблица", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
-            if (dialogResult == DialogResult.Yes)
+            if (!isSaved)
             {
-                rows = 0;
-                columns = 4;
-                openFilePath = "";
-                arrayValues = new string[rows, columns];
-                newID = 0;
-                dataGridViewVehicles_SIA.Rows.Clear();
-                buttonGoToVehicle_SIA.Enabled = false;
-                buttonDeleteVehicle_SIA.Enabled = false;
-                wasTrue = false;
-                isSaved = true;
-            }
+                DialogResult dialogResult = MessageBox.Show("У вас есть несохранённые данные.\nСоздать новую таблицу? ", "Новая таблица", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    rows = 0;
+                    columns = 8;
+                    openFilePath = "";
+                    arrayValues = new string[rows, columns];
+                    newID = 0;
+                    dataGridViewVehicles_SIA.Rows.Clear();
+                    buttonGoToVehicle_SIA.Enabled = false;
+                    buttonDeleteVehicle_SIA.Enabled = false;
+                    wasTrue = false;
+                    isSaved = true;
+                    comboBoxVehicleType_SIA.Text = string.Empty;
+                    numericUpDownRouteID_SIA.Value = 0;
+                    numericUpDownID_SIA.Value = 0;
+                    filters = new string[7];
+                }
             }
             else
             {
                 rows = 0;
-                columns = 4;
+                columns = 8;
                 openFilePath = "";
                 arrayValues = new string[rows, columns];
                 newID = 0;
@@ -275,25 +356,17 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14
                 buttonDeleteVehicle_SIA.Enabled = false;
                 wasTrue = false;
                 isSaved = true;
+                comboBoxVehicleType_SIA.Text = string.Empty;
+                numericUpDownRouteID_SIA.Value = 0;
+                numericUpDownID_SIA.Value = 0;
+                filters = new string[7];
             }
         }
 
         private void numericUpDownID_SIA_ValueChanged(object sender, EventArgs e)
         {
-            dataGridViewVehicles_SIA.Rows.Clear();
-            for (int i = 0; i < rows; i++)
-            {
-                if (arrayValues[i, 0] == Convert.ToString(numericUpDownID_SIA.Value))
-                {
-                    dataGridViewVehicles_SIA.Rows.Add(arrayValues[i, 0]);
-                    for (int j = 1; j < columns; j++)
-                    {
-                        dataGridViewVehicles_SIA.Rows[dataGridViewVehicles_SIA.RowCount - 1].Cells[j].Value = arrayValues[i, j];
-                    }
-                        
-                }
-
-            }
+            filters[0] = Convert.ToString(numericUpDownID_SIA.Value);
+            Filter();
         }
             
 
@@ -319,63 +392,74 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14
             comboBoxVehicleType_SIA.Text = string.Empty;
             numericUpDownRouteID_SIA.Value = 0;
             numericUpDownID_SIA.Value = 0;
-            dateTimePickerInUseFrom_SIA.Value = System.DateTime.Now;
+            numericUpDownRouteTime_SIA.Value = 0;
+            textBoxStartStop_SIA.Text = string.Empty;
+            textBoxFinalStop_SIA.Text = string.Empty;
             UpdateTable();
         }
 
 
         private void comboBoxVehicleType_SIA_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dataGridViewVehicles_SIA.Rows.Clear();
-            for (int i = 0; i < rows; i++)
-            {
-                if (arrayValues[i, 1] == Convert.ToString(comboBoxVehicleType_SIA.Text))
-                {
-                    dataGridViewVehicles_SIA.Rows.Add(arrayValues[i, 0]);
-                    for (int j = 1; j < columns; j++)
-                    {
-                        dataGridViewVehicles_SIA.Rows[dataGridViewVehicles_SIA.RowCount - 1].Cells[j].Value = arrayValues[i, j];
-                    }
-
-                }
-
-            }
+            filters[1] = comboBoxVehicleType_SIA.Text;
+            Filter();
         }
 
         private void numericUpDownRouteID_SIA_ValueChanged(object sender, EventArgs e)
         {
-            dataGridViewVehicles_SIA.Rows.Clear();
-            for (int i = 0; i < rows; i++)
-            {
-                if (arrayValues[i, 2] == Convert.ToString(numericUpDownRouteID_SIA.Value))
-                {
-                    dataGridViewVehicles_SIA.Rows.Add(arrayValues[i, 0]);
-                    for (int j = 1; j < columns; j++)
-                    {
-                        dataGridViewVehicles_SIA.Rows[dataGridViewVehicles_SIA.RowCount - 1].Cells[j].Value = arrayValues[i, j];
-                    }
-
-                }
-
-            }
+            filters[2] = Convert.ToString(numericUpDownRouteID_SIA.Value);
+            Filter();
         }
 
         private void dateTimePickerInUseFrom_SIA_ValueChanged(object sender, EventArgs e)
         {
-            dataGridViewVehicles_SIA.Rows.Clear();
-            for (int i = 0; i < rows; i++)
+            filters[3] = dateTimePickerInUseFrom_SIA.Value.ToShortDateString().Replace("/", ".");
+            Filter();
+        }
+
+        private void textBoxStartStop_SIA_TextChanged(object sender, EventArgs e)
+        {
+            filters[4] = Convert.ToString(textBoxStartStop_SIA.Text);
+            Filter();
+        }
+
+        private void textBoxFinalStop_SIA_TextChanged(object sender, EventArgs e)
+        {
+            filters[5] = Convert.ToString(textBoxStartStop_SIA.Text);
+            Filter();
+        }
+
+        private void numericUpDownRouteTime_SIA_ValueChanged(object sender, EventArgs e)
+        {
+            filters[6] = Convert.ToString(numericUpDownRouteTime_SIA.Value);
+            Filter();
+        }
+
+        private void radioButtonGeneral_SIA_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonGeneral_SIA.Checked) 
             {
-                if (arrayValues[i, 3] == Convert.ToString(dateTimePickerInUseFrom_SIA.Value))
-                {
-                    dataGridViewVehicles_SIA.Rows.Add(arrayValues[i, 0]);
-                    for (int j = 1; j < columns; j++)
-                    {
-                        dataGridViewVehicles_SIA.Rows[dataGridViewVehicles_SIA.RowCount - 1].Cells[j].Value = arrayValues[i, j];
-                    }
-
-                }
-
+                textBoxVehicleAmount_SIA.Text = Convert.ToString(ds.VehicleAmount(arrayValues));
+                textBoxRouteAmount_SIA.Text = Convert.ToString(ds.RouteAmount(arrayValues));
+                textBoxMinTime_SIA.Text = Convert.ToString(ds.MinTime(arrayValues));
+                textBoxMaxTime_SIA.Text = Convert.ToString(ds.MaxTime(arrayValues));
+                textBoxAvgTime_SIA.Text = Convert.ToString(ds.AvgTime(arrayValues));
             }
+            else
+            {
+                foreach (DataGridViewRow item in this.dataGridViewVehicles_SIA.SelectedRows)
+                {
+                    tempArray[cnt] = Convert.ToString(dataGridViewVehicles_SIA.Rows[item.Index].Cells[0].Value);
+                    dataGridViewVehicles_SIA.Rows.RemoveAt(item.Index);
+                    cnt++;
+                }
+                textBoxVehicleAmount_SIA.Text = Convert.ToString(ds.VehicleAmount(arrayValues));
+                textBoxRouteAmount_SIA.Text = Convert.ToString(ds.RouteAmount_Route(arrayValues, ));
+                textBoxMinTime_SIA.Text = Convert.ToString(ds.MinTime_Route(arrayValues));
+                textBoxMaxTime_SIA.Text = Convert.ToString(ds.MaxTime_Route(arrayValues));
+                textBoxAvgTime_SIA.Text = Convert.ToString(ds.AvgTime_Route(arrayValues));
+            }
+
         }
     }
 }
