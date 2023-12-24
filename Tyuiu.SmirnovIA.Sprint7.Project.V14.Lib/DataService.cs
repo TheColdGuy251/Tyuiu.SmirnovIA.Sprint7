@@ -10,7 +10,7 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14.Lib
     {
         public int VehicleAmount(string[,] array)
         {
-            return array.GetLength(1);
+            return array.GetLength(0);
         }
 
         public int RouteAmount_Route(string[,] array, int id)
@@ -18,10 +18,13 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14.Lib
             int cnt = 0;
             for (int i = 0; i < array.GetLength(0); i++)
             {
-                if (Convert.ToInt32(array[i, 1]) == id)
+                try {   
+                if (Convert.ToInt32(array[i, 2]) == id)
                 {
                     cnt++;
                 }
+                }
+                catch { }
             }
             return cnt;
         }
@@ -31,9 +34,21 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14.Lib
             int min = 999999999;
             for (int i = 0; i < array.GetLength(0); i++)
             {
-                if (Convert.ToInt32(array[i, 1]) == id)
+                try
                 {
-                    min = Math.Min(min, Convert.ToInt32(array[i, 6]));
+                    if (Convert.ToInt32(array[i, 2]) == id)
+                    {
+                        try
+                        {
+                            min = Math.Min(min, Convert.ToInt32(array[i, 6]));
+                        }
+                        catch { }
+                    }
+                }
+                catch {  };
+                if (min == 999999999)
+                {
+                    min = 0;
                 }
             }
             return min;
@@ -44,10 +59,19 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14.Lib
             int max = 0;
             for (int i = 0; i < array.GetLength(0); i++)
             {
-                if (Convert.ToInt32(array[i, 1]) == id)
+                try
                 {
-                    max = Math.Max(max, Convert.ToInt32(array[i, 6]));
+                    if (Convert.ToInt32(array[i, 2]) == id)
+                    {
+                        try
+                        {
+                            max = Math.Max(max, Convert.ToInt32(array[i, 6]));
+                        }
+                        catch { }
+                    }
                 }
+                catch { }
+
             }
             return max;
         }
@@ -58,11 +82,22 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14.Lib
             int cnt = 0;
             for (int i = 0; i < array.GetLength(0); i++)
             {
-                if (Convert.ToInt32(array[i, 1]) == id)
-                {
-                    avg += Convert.ToInt32(array[i, 6]);
-                    cnt++;
+                try { 
+                    if (Convert.ToInt32(array[i, 2]) == id)
+                    {
+                        try
+                        {
+                            avg += Convert.ToInt32(array[i, 6]);
+                            cnt++;
+                        }
+                        catch { }
+                    }
                 }
+                catch { }
+            }
+            if (cnt == 0)
+            {
+                return 0;
             }
             return avg / cnt;
         }
@@ -73,9 +108,9 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14.Lib
             string[] usedId = new string[array.GetLength(0)];
             for (int i = 0; i < array.GetLength(0); i++)
             {
-                if (!(usedId.Contains(array[i, 1])))
+                if (!(usedId.Contains(array[i, 2])))
                 {
-                    usedId[i] = array[i, 1];
+                    usedId[i] = array[i, 2];
                     cnt++;
                 }
             }
@@ -86,8 +121,19 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14.Lib
             int min = 999999999;
             for (int i = 0; i < array.GetLength(0); i++)
             {
-                min = Math.Min(min, Convert.ToInt32(array[i, 6]));
+                try
+                {
+                    min = Math.Min(min, Convert.ToInt32(array[i, 6]));
+                }
+                catch
+                {
 
+                }
+
+            }
+            if (min == 999999999)
+            {
+                min = 0;
             }
             return min;
         }
@@ -96,8 +142,14 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14.Lib
             int max = 0;
             for (int i = 0; i < array.GetLength(0); i++)
             {
+                try
+                {
+                    max = Math.Max(max, Convert.ToInt32(array[i, 6]));
+                }
+                catch
+                {
 
-                max = Math.Max(max, Convert.ToInt32(array[i, 6]));
+                }
             }
             return max;
         }
@@ -107,8 +159,15 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14.Lib
             int cnt = 0;
             for (int i = 0; i < array.GetLength(0); i++)
             {
-                avg += Convert.ToInt32(array[i, 6]);
-                cnt++;
+                try { 
+                    avg += Convert.ToInt32(array[i, 6]);
+                    cnt++;
+                }
+                catch { }
+            }
+            if (cnt == 0)
+            {
+                return 0;
             }
             return avg / cnt;
         }

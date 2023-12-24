@@ -79,8 +79,6 @@
             this.saveFileDialogSaveTo_SIA = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialogTable_SIA = new System.Windows.Forms.OpenFileDialog();
             this.groupBoxStats_SIA = new System.Windows.Forms.GroupBox();
-            this.radioButtonRoute_SIA = new System.Windows.Forms.RadioButton();
-            this.radioButtonGeneral_SIA = new System.Windows.Forms.RadioButton();
             this.textBoxVehicleAmount_SIA = new System.Windows.Forms.TextBox();
             this.labelVehicleAmount_SIA = new System.Windows.Forms.Label();
             this.textBoxAvgTime_SIA = new System.Windows.Forms.TextBox();
@@ -91,6 +89,8 @@
             this.labelMaxTime_SIA = new System.Windows.Forms.Label();
             this.labelMinTime_SIA = new System.Windows.Forms.Label();
             this.labelRouteAmount_SIA = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewVehicles_SIA)).BeginInit();
             this.groupBoxFilters_SIA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRouteTime_SIA)).BeginInit();
@@ -99,6 +99,8 @@
             this.menuStripAppMenu_SIA.SuspendLayout();
             this.groupBoxTools_SIA.SuspendLayout();
             this.groupBoxStats_SIA.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridViewVehicles_SIA
@@ -153,7 +155,7 @@
             this.dataGridViewVehicles_SIA.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridViewVehicles_SIA.RowTemplate.Height = 25;
             this.dataGridViewVehicles_SIA.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewVehicles_SIA.Size = new System.Drawing.Size(930, 414);
+            this.dataGridViewVehicles_SIA.Size = new System.Drawing.Size(954, 478);
             this.dataGridViewVehicles_SIA.TabIndex = 0;
             this.dataGridViewVehicles_SIA.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewVehicles_SIA_CellClick);
             this.dataGridViewVehicles_SIA.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewVehicles_SIA_CellEndEdit);
@@ -215,13 +217,13 @@
             // 
             // groupBoxFilters_SIA
             // 
+            this.groupBoxFilters_SIA.Controls.Add(this.panel2);
             this.groupBoxFilters_SIA.Controls.Add(this.numericUpDownRouteTime_SIA);
             this.groupBoxFilters_SIA.Controls.Add(this.textBoxFinalStop_SIA);
             this.groupBoxFilters_SIA.Controls.Add(this.textBoxStartStop_SIA);
             this.groupBoxFilters_SIA.Controls.Add(this.labelRouteTime_SIA);
             this.groupBoxFilters_SIA.Controls.Add(this.labelFinalStop_SIA);
             this.groupBoxFilters_SIA.Controls.Add(this.labelStartStop_SIA);
-            this.groupBoxFilters_SIA.Controls.Add(this.buttonResetFilters_SIA);
             this.groupBoxFilters_SIA.Controls.Add(this.comboBoxVehicleType_SIA);
             this.groupBoxFilters_SIA.Controls.Add(this.numericUpDownRouteID_SIA);
             this.groupBoxFilters_SIA.Controls.Add(this.labelInUseFrom_SIA);
@@ -232,9 +234,9 @@
             this.groupBoxFilters_SIA.Controls.Add(this.labelID_SIA);
             this.groupBoxFilters_SIA.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBoxFilters_SIA.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxFilters_SIA.Location = new System.Drawing.Point(930, 24);
+            this.groupBoxFilters_SIA.Location = new System.Drawing.Point(954, 24);
             this.groupBoxFilters_SIA.Name = "groupBoxFilters_SIA";
-            this.groupBoxFilters_SIA.Size = new System.Drawing.Size(206, 507);
+            this.groupBoxFilters_SIA.Size = new System.Drawing.Size(206, 571);
             this.groupBoxFilters_SIA.TabIndex = 3;
             this.groupBoxFilters_SIA.TabStop = false;
             this.groupBoxFilters_SIA.Text = "Фильтры";
@@ -293,7 +295,7 @@
             // buttonResetFilters_SIA
             // 
             this.buttonResetFilters_SIA.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.buttonResetFilters_SIA.Location = new System.Drawing.Point(31, 466);
+            this.buttonResetFilters_SIA.Location = new System.Drawing.Point(25, 25);
             this.buttonResetFilters_SIA.Name = "buttonResetFilters_SIA";
             this.buttonResetFilters_SIA.Size = new System.Drawing.Size(153, 33);
             this.buttonResetFilters_SIA.TabIndex = 4;
@@ -392,7 +394,7 @@
             this.ToolStripMenuItemHelp_SIA});
             this.menuStripAppMenu_SIA.Location = new System.Drawing.Point(0, 0);
             this.menuStripAppMenu_SIA.Name = "menuStripAppMenu_SIA";
-            this.menuStripAppMenu_SIA.Size = new System.Drawing.Size(1136, 24);
+            this.menuStripAppMenu_SIA.Size = new System.Drawing.Size(1160, 24);
             this.menuStripAppMenu_SIA.TabIndex = 7;
             this.menuStripAppMenu_SIA.Text = "menuStrip1";
             // 
@@ -412,7 +414,7 @@
             this.ToolStripMenuItemNewTable_SIA.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemNewTable_SIA.Image")));
             this.ToolStripMenuItemNewTable_SIA.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ToolStripMenuItemNewTable_SIA.Name = "ToolStripMenuItemNewTable_SIA";
-            this.ToolStripMenuItemNewTable_SIA.Size = new System.Drawing.Size(179, 38);
+            this.ToolStripMenuItemNewTable_SIA.Size = new System.Drawing.Size(196, 38);
             this.ToolStripMenuItemNewTable_SIA.Text = "Новая таблица";
             this.ToolStripMenuItemNewTable_SIA.Click += new System.EventHandler(this.ToolStripMenuItemNewTable_SIA_Click);
             // 
@@ -423,7 +425,7 @@
             this.ToolStripMenuItemOpen_SIA.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ToolStripMenuItemOpen_SIA.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ToolStripMenuItemOpen_SIA.Name = "ToolStripMenuItemOpen_SIA";
-            this.ToolStripMenuItemOpen_SIA.Size = new System.Drawing.Size(179, 38);
+            this.ToolStripMenuItemOpen_SIA.Size = new System.Drawing.Size(196, 38);
             this.ToolStripMenuItemOpen_SIA.Text = "Открыть...";
             this.ToolStripMenuItemOpen_SIA.Click += new System.EventHandler(this.ToolStripMenuItemOpen_SIA_Click);
             // 
@@ -432,7 +434,7 @@
             this.ToolStripMenuItemSave_SIA.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemSave_SIA.Image")));
             this.ToolStripMenuItemSave_SIA.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ToolStripMenuItemSave_SIA.Name = "ToolStripMenuItemSave_SIA";
-            this.ToolStripMenuItemSave_SIA.Size = new System.Drawing.Size(179, 38);
+            this.ToolStripMenuItemSave_SIA.Size = new System.Drawing.Size(196, 38);
             this.ToolStripMenuItemSave_SIA.Text = "Сохранить";
             this.ToolStripMenuItemSave_SIA.Click += new System.EventHandler(this.ToolStripMenuItemSave_SIA_Click);
             // 
@@ -441,7 +443,7 @@
             this.ToolStripMenuItemSaveAs_SIA.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemSaveAs_SIA.Image")));
             this.ToolStripMenuItemSaveAs_SIA.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ToolStripMenuItemSaveAs_SIA.Name = "ToolStripMenuItemSaveAs_SIA";
-            this.ToolStripMenuItemSaveAs_SIA.Size = new System.Drawing.Size(179, 38);
+            this.ToolStripMenuItemSaveAs_SIA.Size = new System.Drawing.Size(196, 38);
             this.ToolStripMenuItemSaveAs_SIA.Text = "Сохранить как...";
             this.ToolStripMenuItemSaveAs_SIA.Click += new System.EventHandler(this.ToolStripMenuItemSaveAs_SIA_Click);
             // 
@@ -461,6 +463,7 @@
             this.ToolStripMenuItemUserGuide_SIA.Name = "ToolStripMenuItemUserGuide_SIA";
             this.ToolStripMenuItemUserGuide_SIA.Size = new System.Drawing.Size(239, 38);
             this.ToolStripMenuItemUserGuide_SIA.Text = "Руководство Пользователя";
+            this.ToolStripMenuItemUserGuide_SIA.Click += new System.EventHandler(this.ToolStripMenuItemUserGuide_SIA_Click);
             // 
             // ToolStripMenuItemAbout_SIA
             // 
@@ -469,11 +472,11 @@
             this.ToolStripMenuItemAbout_SIA.Name = "ToolStripMenuItemAbout_SIA";
             this.ToolStripMenuItemAbout_SIA.Size = new System.Drawing.Size(239, 38);
             this.ToolStripMenuItemAbout_SIA.Text = "О программме";
+            this.ToolStripMenuItemAbout_SIA.Click += new System.EventHandler(this.ToolStripMenuItemAbout_SIA_Click);
             // 
             // groupBoxTools_SIA
             // 
-            this.groupBoxTools_SIA.Controls.Add(this.labelSearch_SIA);
-            this.groupBoxTools_SIA.Controls.Add(this.textBoxSearch_SIA);
+            this.groupBoxTools_SIA.Controls.Add(this.panel1);
             this.groupBoxTools_SIA.Controls.Add(this.buttonDeleteVehicle_SIA);
             this.groupBoxTools_SIA.Controls.Add(this.buttonAddVehicle_SIA);
             this.groupBoxTools_SIA.Controls.Add(this.buttonGoToVehicle_SIA);
@@ -481,7 +484,7 @@
             this.groupBoxTools_SIA.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBoxTools_SIA.Location = new System.Drawing.Point(0, 24);
             this.groupBoxTools_SIA.Name = "groupBoxTools_SIA";
-            this.groupBoxTools_SIA.Size = new System.Drawing.Size(930, 93);
+            this.groupBoxTools_SIA.Size = new System.Drawing.Size(954, 93);
             this.groupBoxTools_SIA.TabIndex = 4;
             this.groupBoxTools_SIA.TabStop = false;
             this.groupBoxTools_SIA.Text = "Инструменты";
@@ -489,7 +492,7 @@
             // labelSearch_SIA
             // 
             this.labelSearch_SIA.AutoSize = true;
-            this.labelSearch_SIA.Location = new System.Drawing.Point(675, 36);
+            this.labelSearch_SIA.Location = new System.Drawing.Point(3, 3);
             this.labelSearch_SIA.Name = "labelSearch_SIA";
             this.labelSearch_SIA.Size = new System.Drawing.Size(52, 18);
             this.labelSearch_SIA.TabIndex = 5;
@@ -497,10 +500,11 @@
             // 
             // textBoxSearch_SIA
             // 
-            this.textBoxSearch_SIA.Location = new System.Drawing.Point(678, 57);
+            this.textBoxSearch_SIA.Location = new System.Drawing.Point(6, 34);
             this.textBoxSearch_SIA.Name = "textBoxSearch_SIA";
             this.textBoxSearch_SIA.Size = new System.Drawing.Size(222, 24);
             this.textBoxSearch_SIA.TabIndex = 4;
+            this.textBoxSearch_SIA.TextChanged += new System.EventHandler(this.textBoxSearch_SIA_TextChanged);
             // 
             // buttonDeleteVehicle_SIA
             // 
@@ -511,6 +515,7 @@
             this.buttonDeleteVehicle_SIA.Name = "buttonDeleteVehicle_SIA";
             this.buttonDeleteVehicle_SIA.Size = new System.Drawing.Size(66, 54);
             this.buttonDeleteVehicle_SIA.TabIndex = 3;
+            this.toolTipOnButtonHold_SIA.SetToolTip(this.buttonDeleteVehicle_SIA, "Удалить ячейку");
             this.buttonDeleteVehicle_SIA.UseVisualStyleBackColor = true;
             this.buttonDeleteVehicle_SIA.Click += new System.EventHandler(this.buttonDeleteVehicle_SIA_Click);
             // 
@@ -522,6 +527,7 @@
             this.buttonAddVehicle_SIA.Name = "buttonAddVehicle_SIA";
             this.buttonAddVehicle_SIA.Size = new System.Drawing.Size(66, 56);
             this.buttonAddVehicle_SIA.TabIndex = 1;
+            this.toolTipOnButtonHold_SIA.SetToolTip(this.buttonAddVehicle_SIA, "Добавить ячейку");
             this.buttonAddVehicle_SIA.UseVisualStyleBackColor = true;
             this.buttonAddVehicle_SIA.Click += new System.EventHandler(this.buttonAddVehicle_SIA_Click);
             // 
@@ -534,6 +540,7 @@
             this.buttonGoToVehicle_SIA.Name = "buttonGoToVehicle_SIA";
             this.buttonGoToVehicle_SIA.Size = new System.Drawing.Size(80, 71);
             this.buttonGoToVehicle_SIA.TabIndex = 0;
+            this.toolTipOnButtonHold_SIA.SetToolTip(this.buttonGoToVehicle_SIA, "Перейти к маршруту");
             this.buttonGoToVehicle_SIA.UseVisualStyleBackColor = true;
             this.buttonGoToVehicle_SIA.Click += new System.EventHandler(this.buttonGoToVehicle_SIA_Click);
             // 
@@ -543,8 +550,6 @@
             // 
             // groupBoxStats_SIA
             // 
-            this.groupBoxStats_SIA.Controls.Add(this.radioButtonRoute_SIA);
-            this.groupBoxStats_SIA.Controls.Add(this.radioButtonGeneral_SIA);
             this.groupBoxStats_SIA.Controls.Add(this.textBoxVehicleAmount_SIA);
             this.groupBoxStats_SIA.Controls.Add(this.labelVehicleAmount_SIA);
             this.groupBoxStats_SIA.Controls.Add(this.textBoxAvgTime_SIA);
@@ -557,39 +562,16 @@
             this.groupBoxStats_SIA.Controls.Add(this.labelRouteAmount_SIA);
             this.groupBoxStats_SIA.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBoxStats_SIA.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxStats_SIA.Location = new System.Drawing.Point(0, 531);
+            this.groupBoxStats_SIA.Location = new System.Drawing.Point(0, 595);
             this.groupBoxStats_SIA.Name = "groupBoxStats_SIA";
-            this.groupBoxStats_SIA.Size = new System.Drawing.Size(1136, 112);
+            this.groupBoxStats_SIA.Size = new System.Drawing.Size(1160, 85);
             this.groupBoxStats_SIA.TabIndex = 4;
             this.groupBoxStats_SIA.TabStop = false;
             this.groupBoxStats_SIA.Text = "Статистика";
             // 
-            // radioButtonRoute_SIA
-            // 
-            this.radioButtonRoute_SIA.AutoSize = true;
-            this.radioButtonRoute_SIA.Location = new System.Drawing.Point(930, 70);
-            this.radioButtonRoute_SIA.Name = "radioButtonRoute_SIA";
-            this.radioButtonRoute_SIA.Size = new System.Drawing.Size(178, 22);
-            this.radioButtonRoute_SIA.TabIndex = 19;
-            this.radioButtonRoute_SIA.Text = "Статистика маршрута";
-            this.radioButtonRoute_SIA.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonGeneral_SIA
-            // 
-            this.radioButtonGeneral_SIA.AutoSize = true;
-            this.radioButtonGeneral_SIA.Checked = true;
-            this.radioButtonGeneral_SIA.Location = new System.Drawing.Point(930, 42);
-            this.radioButtonGeneral_SIA.Name = "radioButtonGeneral_SIA";
-            this.radioButtonGeneral_SIA.Size = new System.Drawing.Size(155, 22);
-            this.radioButtonGeneral_SIA.TabIndex = 18;
-            this.radioButtonGeneral_SIA.TabStop = true;
-            this.radioButtonGeneral_SIA.Text = "Общая статистика";
-            this.radioButtonGeneral_SIA.UseVisualStyleBackColor = true;
-            this.radioButtonGeneral_SIA.CheckedChanged += new System.EventHandler(this.radioButtonGeneral_SIA_CheckedChanged);
-            // 
             // textBoxVehicleAmount_SIA
             // 
-            this.textBoxVehicleAmount_SIA.Location = new System.Drawing.Point(6, 70);
+            this.textBoxVehicleAmount_SIA.Location = new System.Drawing.Point(6, 51);
             this.textBoxVehicleAmount_SIA.Name = "textBoxVehicleAmount_SIA";
             this.textBoxVehicleAmount_SIA.ReadOnly = true;
             this.textBoxVehicleAmount_SIA.Size = new System.Drawing.Size(103, 24);
@@ -598,7 +580,7 @@
             // labelVehicleAmount_SIA
             // 
             this.labelVehicleAmount_SIA.AutoSize = true;
-            this.labelVehicleAmount_SIA.Location = new System.Drawing.Point(11, 49);
+            this.labelVehicleAmount_SIA.Location = new System.Drawing.Point(11, 30);
             this.labelVehicleAmount_SIA.Name = "labelVehicleAmount_SIA";
             this.labelVehicleAmount_SIA.Size = new System.Drawing.Size(85, 18);
             this.labelVehicleAmount_SIA.TabIndex = 16;
@@ -606,7 +588,7 @@
             // 
             // textBoxAvgTime_SIA
             // 
-            this.textBoxAvgTime_SIA.Location = new System.Drawing.Point(687, 70);
+            this.textBoxAvgTime_SIA.Location = new System.Drawing.Point(687, 51);
             this.textBoxAvgTime_SIA.Name = "textBoxAvgTime_SIA";
             this.textBoxAvgTime_SIA.ReadOnly = true;
             this.textBoxAvgTime_SIA.Size = new System.Drawing.Size(141, 24);
@@ -614,7 +596,7 @@
             // 
             // textBoxMaxTime_SIA
             // 
-            this.textBoxMaxTime_SIA.Location = new System.Drawing.Point(495, 70);
+            this.textBoxMaxTime_SIA.Location = new System.Drawing.Point(495, 51);
             this.textBoxMaxTime_SIA.Name = "textBoxMaxTime_SIA";
             this.textBoxMaxTime_SIA.ReadOnly = true;
             this.textBoxMaxTime_SIA.Size = new System.Drawing.Size(141, 24);
@@ -622,7 +604,7 @@
             // 
             // textBoxMinTime_SIA
             // 
-            this.textBoxMinTime_SIA.Location = new System.Drawing.Point(316, 70);
+            this.textBoxMinTime_SIA.Location = new System.Drawing.Point(316, 51);
             this.textBoxMinTime_SIA.Name = "textBoxMinTime_SIA";
             this.textBoxMinTime_SIA.ReadOnly = true;
             this.textBoxMinTime_SIA.Size = new System.Drawing.Size(141, 24);
@@ -630,7 +612,7 @@
             // 
             // textBoxRouteAmount_SIA
             // 
-            this.textBoxRouteAmount_SIA.Location = new System.Drawing.Point(148, 70);
+            this.textBoxRouteAmount_SIA.Location = new System.Drawing.Point(148, 51);
             this.textBoxRouteAmount_SIA.Name = "textBoxRouteAmount_SIA";
             this.textBoxRouteAmount_SIA.ReadOnly = true;
             this.textBoxRouteAmount_SIA.Size = new System.Drawing.Size(126, 24);
@@ -639,7 +621,7 @@
             // labelAvgTime_SIA
             // 
             this.labelAvgTime_SIA.AutoSize = true;
-            this.labelAvgTime_SIA.Location = new System.Drawing.Point(700, 49);
+            this.labelAvgTime_SIA.Location = new System.Drawing.Point(700, 30);
             this.labelAvgTime_SIA.Name = "labelAvgTime_SIA";
             this.labelAvgTime_SIA.Size = new System.Drawing.Size(115, 18);
             this.labelAvgTime_SIA.TabIndex = 11;
@@ -648,7 +630,7 @@
             // labelMaxTime_SIA
             // 
             this.labelMaxTime_SIA.AutoSize = true;
-            this.labelMaxTime_SIA.Location = new System.Drawing.Point(485, 49);
+            this.labelMaxTime_SIA.Location = new System.Drawing.Point(485, 30);
             this.labelMaxTime_SIA.Name = "labelMaxTime_SIA";
             this.labelMaxTime_SIA.Size = new System.Drawing.Size(161, 18);
             this.labelMaxTime_SIA.TabIndex = 10;
@@ -657,7 +639,7 @@
             // labelMinTime_SIA
             // 
             this.labelMinTime_SIA.AutoSize = true;
-            this.labelMinTime_SIA.Location = new System.Drawing.Point(313, 49);
+            this.labelMinTime_SIA.Location = new System.Drawing.Point(313, 30);
             this.labelMinTime_SIA.Name = "labelMinTime_SIA";
             this.labelMinTime_SIA.Size = new System.Drawing.Size(153, 18);
             this.labelMinTime_SIA.TabIndex = 9;
@@ -666,24 +648,43 @@
             // labelRouteAmount_SIA
             // 
             this.labelRouteAmount_SIA.AutoSize = true;
-            this.labelRouteAmount_SIA.Location = new System.Drawing.Point(129, 49);
+            this.labelRouteAmount_SIA.Location = new System.Drawing.Point(142, 30);
             this.labelRouteAmount_SIA.Name = "labelRouteAmount_SIA";
-            this.labelRouteAmount_SIA.Size = new System.Drawing.Size(169, 18);
+            this.labelRouteAmount_SIA.Size = new System.Drawing.Size(139, 18);
             this.labelRouteAmount_SIA.TabIndex = 8;
-            this.labelRouteAmount_SIA.Text = "Движутся по маршруту";
+            this.labelRouteAmount_SIA.Text = "Кол-во маршрутов";
             this.labelRouteAmount_SIA.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.labelSearch_SIA);
+            this.panel1.Controls.Add(this.textBoxSearch_SIA);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(711, 20);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(240, 70);
+            this.panel1.TabIndex = 6;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.buttonResetFilters_SIA);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(3, 492);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(200, 76);
+            this.panel2.TabIndex = 26;
             // 
             // FormMainAllVehicles_SIA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1136, 643);
+            this.ClientSize = new System.Drawing.Size(1160, 680);
             this.Controls.Add(this.dataGridViewVehicles_SIA);
             this.Controls.Add(this.groupBoxTools_SIA);
             this.Controls.Add(this.groupBoxFilters_SIA);
             this.Controls.Add(this.menuStripAppMenu_SIA);
             this.Controls.Add(this.groupBoxStats_SIA);
-            this.MinimumSize = new System.Drawing.Size(654, 580);
+            this.MinimumSize = new System.Drawing.Size(1108, 662);
             this.Name = "FormMainAllVehicles_SIA";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Весь транспорт";
@@ -696,9 +697,11 @@
             this.menuStripAppMenu_SIA.ResumeLayout(false);
             this.menuStripAppMenu_SIA.PerformLayout();
             this.groupBoxTools_SIA.ResumeLayout(false);
-            this.groupBoxTools_SIA.PerformLayout();
             this.groupBoxStats_SIA.ResumeLayout(false);
             this.groupBoxStats_SIA.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -759,8 +762,8 @@
         private System.Windows.Forms.Label labelVehicleAmount_SIA;
         private System.Windows.Forms.Label labelSearch_SIA;
         private System.Windows.Forms.TextBox textBoxSearch_SIA;
-        private System.Windows.Forms.RadioButton radioButtonRoute_SIA;
-        private System.Windows.Forms.RadioButton radioButtonGeneral_SIA;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 
