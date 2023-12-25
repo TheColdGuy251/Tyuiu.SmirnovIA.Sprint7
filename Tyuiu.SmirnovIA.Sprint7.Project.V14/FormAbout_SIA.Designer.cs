@@ -57,6 +57,7 @@
             this.pictureBoxAvatar_SIA.Size = new System.Drawing.Size(138, 176);
             this.pictureBoxAvatar_SIA.TabIndex = 7;
             this.pictureBoxAvatar_SIA.TabStop = false;
+            this.pictureBoxAvatar_SIA.Click += new System.EventHandler(this.pictureBoxAvatar_SIA_Click);
             // 
             // labelInfo_SIA
             // 
@@ -67,6 +68,7 @@
             this.labelInfo_SIA.Size = new System.Drawing.Size(384, 162);
             this.labelInfo_SIA.TabIndex = 6;
             this.labelInfo_SIA.Text = resources.GetString("labelInfo_SIA.Text");
+            this.labelInfo_SIA.Click += new System.EventHandler(this.labelInfo_SIA_Click);
             // 
             // FormAbout_SIA
             // 

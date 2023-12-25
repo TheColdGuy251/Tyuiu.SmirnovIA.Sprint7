@@ -21,5 +21,15 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14
         {
             this.Close();
         }
+
+        private void pictureBoxAvatar_SIA_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelInfo_SIA_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

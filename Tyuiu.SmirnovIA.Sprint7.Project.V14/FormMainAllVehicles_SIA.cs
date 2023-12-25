@@ -31,6 +31,7 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14
         static bool wasTrue = false;
         static bool isSaved = true;
         static string[] filters = new string[7];
+        static DateTime date = DateTime.Now;
         DataService ds = new DataService();
         public static string[,] LoadFromFileData(string filePath)
         {
@@ -117,7 +118,7 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14
             dataGridViewVehicles_SIA.Rows.Clear();
             for (int i = 0; i < rows; i++)
             {
-                if ((arrayValues[i, 0] == filters[0] || string.IsNullOrWhiteSpace(filters[0])) && (arrayValues[i, 1] == filters[1] || string.IsNullOrWhiteSpace(filters[1])) && (arrayValues[i, 2] == filters[2] || string.IsNullOrWhiteSpace(filters[2])) && (arrayValues[i, 3] == filters[3] || string.IsNullOrWhiteSpace(filters[3])) && (arrayValues[i, 6] == filters[6] || string.IsNullOrWhiteSpace(filters[6])))
+                if ((arrayValues[i, 0] == filters[0] || string.IsNullOrWhiteSpace(filters[0]) || Convert.ToInt32(filters[0]) == 0) && (arrayValues[i, 1] == filters[1] || string.IsNullOrWhiteSpace(filters[1])) && (arrayValues[i, 2] == filters[2] || string.IsNullOrWhiteSpace(filters[2]) || Convert.ToInt32(filters[2]) == 0) && (arrayValues[i, 3] == filters[3] || string.IsNullOrWhiteSpace(filters[3]) || dateTimePickerInUseFrom_SIA.Value == date) && (arrayValues[i, 6] == filters[6] || string.IsNullOrWhiteSpace(filters[6]) || Convert.ToInt32(filters[6]) == 0))
                 {
                     try
                     {
@@ -332,7 +333,7 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14
 
         private void dataGridViewVehicles_SIA_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
         {
-            if (e.Column.Index == 0 || e.Column.Index == 2)
+            if (e.Column.Index == 0 || e.Column.Index == 2 || e.Column.Index == 6)
             {
                 try 
                 {
@@ -371,6 +372,8 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14
                     comboBoxVehicleType_SIA.Text = string.Empty;
                     numericUpDownRouteID_SIA.Value = 0;
                     numericUpDownID_SIA.Value = 0;
+                    dateTimePickerInUseFrom_SIA.Value = DateTime.Now;
+                    date = dateTimePickerInUseFrom_SIA.Value;
                     filters = new string[7];
                     textBoxVehicleAmount_SIA.Text = null;
                     textBoxRouteAmount_SIA.Text = null;
@@ -394,6 +397,8 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14
                 comboBoxVehicleType_SIA.Text = string.Empty;
                 numericUpDownRouteID_SIA.Value = 0;
                 numericUpDownID_SIA.Value = 0;
+                dateTimePickerInUseFrom_SIA.Value = DateTime.Now;
+                date = dateTimePickerInUseFrom_SIA.Value;
                 filters = new string[7];
                 textBoxVehicleAmount_SIA.Text = null;
                 textBoxRouteAmount_SIA.Text = null;
@@ -440,6 +445,8 @@ namespace Tyuiu.SmirnovIA.Sprint7.Project.V14
             numericUpDownRouteTime_SIA.Value = 0;
             textBoxStartStop_SIA.Text = string.Empty;
             textBoxFinalStop_SIA.Text = string.Empty;
+            dateTimePickerInUseFrom_SIA.Value = DateTime.Now;
+            date = dateTimePickerInUseFrom_SIA.Value;
             UpdateTable();
         }
 
